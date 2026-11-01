@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Heart, Sparkles, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { romanticAudio } from '../utils/audio';
 
 export function LoveQuestion() {
   const [selectedResponse, setSelectedResponse] = useState<'okay' | 'hmm' | null>(null);
 
   const handleOkay = () => {
     setSelectedResponse('okay');
-    romanticAudio.playHeartChime();
 
     // Burst of hearts and rose confetti
     confetti({
@@ -21,7 +19,6 @@ export function LoveQuestion() {
 
   const handleHmm = () => {
     setSelectedResponse('hmm');
-    romanticAudio.playHeartChime();
 
     // Gentle cute sparkle shower
     confetti({

@@ -1,5 +1,4 @@
 import { Heart, X, Sparkles } from 'lucide-react';
-import { romanticAudio } from '../utils/audio';
 
 interface SmileModalProps {
   isOpen: boolean;
@@ -40,10 +39,7 @@ export function SmileModal({ isOpen, onClose }: SmileModalProps) {
         </p>
 
         <button
-          onClick={() => {
-            romanticAudio.playHeartChime();
-            onClose();
-          }}
+          onClick={onClose}
           className="w-full py-3 px-6 rounded-full text-sm font-medium text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 shadow-lg shadow-rose-600/30 transition-all cursor-pointer font-sans-main border border-rose-300/30"
         >
           Aww, Okay I&apos;m Smiling A Little Bit! 🙈❤️

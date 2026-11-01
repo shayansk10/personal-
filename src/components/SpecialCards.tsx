@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Heart, Sparkles, Smile, Star, Eye } from 'lucide-react';
-import { romanticAudio } from '../utils/audio';
 
 interface CardData {
   id: number;
@@ -51,14 +50,12 @@ export function SpecialCards() {
   const [revealedIds, setRevealedIds] = useState<number[]>([1]); // First card unlocked by default as an intuitive hint
 
   const toggleCard = (id: number) => {
-    romanticAudio.playHeartChime();
     setRevealedIds((prev) =>
       prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
     );
   };
 
   const revealAll = () => {
-    romanticAudio.playHeartChime();
     setRevealedIds([1, 2, 3, 4]);
   };
 

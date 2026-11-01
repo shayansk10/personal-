@@ -1,16 +1,22 @@
-import { Volume2, VolumeX, Heart } from 'lucide-react';
-import { romanticAudio } from '../utils/audio';
+import { Heart, Sparkles } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 interface NavbarProps {
-  musicPlaying: boolean;
-  setMusicPlaying: (playing: boolean) => void;
   onSendSmile: () => void;
+  onOpenRomanticSurprise: () => void;
 }
 
-export function Navbar({ musicPlaying, setMusicPlaying, onSendSmile }: NavbarProps) {
-  const toggleMusic = () => {
-    const newState = romanticAudio.toggle();
-    setMusicPlaying(newState);
+export function Navbar({ onSendSmile, onOpenRomanticSurprise }: NavbarProps) {
+  const handleHeartClick = () => {
+    // Burst of floating hearts and tiny sparkles
+    confetti({
+      particleCount: 45,
+      spread: 60,
+      origin: { y: 0.1, x: 0.85 },
+      colors: ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#ffe4e6'],
+    });
+
+    onOpenRomanticSurprise();
   };
 
   return (
@@ -25,7 +31,7 @@ export function Navbar({ musicPlaying, setMusicPlaying, onSendSmile }: NavbarPro
           <span className="text-rose-500 animate-pulse">❤️</span>
         </a>
 
-        {/* Zone 2: 4–5 single-line clean nav links */}
+        {/* Zone 2: Clean single-line nav links */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-rose-200/70 font-sans-main">
           <a
             href="#hero"
@@ -52,12 +58,6 @@ export function Navbar({ musicPlaying, setMusicPlaying, onSendSmile }: NavbarPro
             A Question
           </a>
           <a
-            href="#moments"
-            className="hover:text-rose-100 transition-colors whitespace-nowrap shrink-0"
-          >
-            Our Moments
-          </a>
-          <a
             href="#surprise"
             className="hover:text-rose-100 transition-colors whitespace-nowrap shrink-0"
           >
@@ -65,7 +65,7 @@ export function Navbar({ musicPlaying, setMusicPlaying, onSendSmile }: NavbarPro
           </a>
         </nav>
 
-        {/* Zone 3: 1 primary action */}
+        {/* Zone 3: Actions - Smile button + Glowing Romantic Heart Surprise Button */}
         <div className="flex items-center gap-2.5 shrink-0">
           <button
             onClick={onSendSmile}
@@ -76,32 +76,17 @@ export function Navbar({ musicPlaying, setMusicPlaying, onSendSmile }: NavbarPro
             <span>Smile Meher? 🥺</span>
           </button>
 
+          {/* Glowing Romantic Heart Surprise Button replacing music toggle */}
           <button
-            onClick={toggleMusic}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full transition-all cursor-pointer whitespace-nowrap shrink-0 border ${
-              musicPlaying
-                ? 'bg-rose-600/30 text-rose-100 border-rose-400/50 shadow-[0_0_15px_rgba(244,63,94,0.3)]'
-                : 'bg-rose-950/40 text-rose-300/70 border-rose-500/20 hover:text-rose-200'
-            }`}
-            title={musicPlaying ? 'Mute romantic music' : 'Play soft romantic music'}
+            onClick={handleHeartClick}
+            className="group relative flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full bg-gradient-to-r from-rose-950/80 via-[#2f081d] to-pink-950/80 hover:from-rose-900/90 hover:to-pink-900/90 text-rose-100 border border-rose-400/40 shadow-[0_0_15px_rgba(244,63,94,0.35)] hover:shadow-[0_0_25px_rgba(244,63,94,0.6)] active:scale-95 transition-all duration-300 cursor-pointer whitespace-nowrap shrink-0 overflow-hidden"
+            title="A Little Romantic Surprise for Meher ❤️"
+            aria-label="Romantic surprise for Meher"
           >
-            {musicPlaying ? (
-              <>
-                <Volume2 className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
-                <span>Music: On</span>
-                {/* Micro equalizer wave indicator */}
-                <span className="flex items-end gap-0.5 h-2.5 ml-1">
-                  <span className="w-0.5 bg-rose-400 animate-pulse h-full" />
-                  <span className="w-0.5 bg-rose-300 animate-pulse h-2/3" style={{ animationDelay: '0.2s' }} />
-                  <span className="w-0.5 bg-rose-400 animate-pulse h-4/5" style={{ animationDelay: '0.4s' }} />
-                </span>
-              </>
-            ) : (
-              <>
-                <VolumeX className="w-3.5 h-3.5 text-rose-400/60" />
-                <span>Music: Off</span>
-              </>
-            )}
+            <span className="absolute inset-0 bg-gradient-to-r from-rose-500/10 via-pink-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-500 animate-pulse group-hover:scale-125 transition-transform" />
+            <span className="relative z-10 font-sans-main tracking-wide">For Meher</span>
+            <Sparkles className="w-3 h-3 text-amber-200 opacity-80 animate-pulse" />
           </button>
         </div>
       </div>

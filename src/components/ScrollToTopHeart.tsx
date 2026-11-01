@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Heart, ChevronUp } from 'lucide-react';
-import { romanticAudio } from '../utils/audio';
 
 export function ScrollToTopHeart() {
   const [visible, setVisible] = useState(false);
@@ -15,7 +14,6 @@ export function ScrollToTopHeart() {
   }, []);
 
   const scrollToTop = () => {
-    romanticAudio.playHeartChime();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Heart, Sparkles, Send } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { romanticAudio } from '../utils/audio';
 
 export function FinalSurprise() {
   const [hasSentHeart, setHasSentHeart] = useState(false);
@@ -19,7 +18,6 @@ export function FinalSurprise() {
 
   const handleSendHeart = () => {
     setIsSending(true);
-    romanticAudio.playHeartChime();
 
     // Large celebratory confetti
     confetti({

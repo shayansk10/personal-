@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Heart, Mail, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { romanticAudio } from '../utils/audio';
 
 interface HeroSectionProps {
   onTriggerSmileModal: () => void;
@@ -31,8 +30,6 @@ export function HeroSection({ onTriggerSmileModal }: HeroSectionProps) {
   }, []);
 
   const handleSmileClick = () => {
-    romanticAudio.playHeartChime();
-
     // Trigger sweet heart confetti
     confetti({
       particleCount: 70,

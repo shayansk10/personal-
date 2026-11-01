@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Heart, Sparkles, Bookmark, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { romanticAudio } from '../utils/audio';
 
 export function ApologyLetter() {
   const [isSaved, setIsSaved] = useState(false);
@@ -10,20 +9,19 @@ export function ApologyLetter() {
   const paragraphs = [
     "Meher, meri jaan… ❤️",
     "Mujhe nahi pata ke main apni feelings ko words mein kitna achay se explain kar paunga, lekin ek baat dil se kehna chahta hoon.",
-    "Agar meri kisi baat, meri kisi harkat ya meri kisi ghalti se tumhara dil dukha hai, toh I'm genuinely sorry. 🥺",
-    "Mera kabhi bhi yeh intention nahi tha ke meri wajah se tum udaas ho. Tumhari narazgi mere liye matter karti hai, kyun ke tum mere liye matter karti ho.",
-    "Main yeh nahi chahta ke tum sirf meri baat maan kar sab bhool jao. Main chahta hoon ke tum meri feelings samjho aur meri taraf se ki gayi ghalti ko sudharne ki koshish bhi dekho.",
-    "Tumhari smile, tumhari baatein, tumhara woh cute sa andaaz… yeh sab mere liye bohat special hai.",
-    "Main perfect nahi hoon, Meher. Mujhse ghaltiyan ho sakti hain, lekin main tumhari feelings ko samajhna aur tumhare liye behtar banna chahta hoon.",
+    "Agar meri kisi baat, meri kisi harkat ya meri kisi ghalti se aapka dil dukha hai, toh I'm genuinely sorry. 🥺",
+    "Mera kabhi bhi yeh intention nahi tha ke meri wajah se aap udaas hon. Aapki narazgi mere liye matter karti hai, kyun ke aap mere liye matter karti hain.",
+    "Main yeh nahi chahta ke aap sirf meri baat maan kar sab bhool jaayein. Main chahta hoon ke aap meri feelings samjhein aur meri taraf se ki gayi ghalti ko sudharne ki koshish bhi dekhein.",
+    "Aapki smile, aapki baatein, aapka woh cute sa andaaz… yeh sab mere liye bohat special hai.",
+    "Main perfect nahi hoon, Meher. Mujhse ghaltiyan ho sakti hain, lekin main aapki feelings ko samajhna aur aapke liye behtar banna chahta hoon.",
     "Aaj bas itna kehna hai…",
     "I'm sorry, meri Meher. ❤️",
-    "Jab tumhara dil kare, mujhse baat kar lena. Main tumhari baat sunna chahta hoon.",
-    "No pressure, no complaints. Bas dil se ek sorry aur tumhare chehre par ek choti si smile ki umeed.",
-    "— Tumhara, with all my heart. ❤️"
+    "Jab aapka dil kare, mujhse baat kar lijiye. Main aapki baat sunna chahta hoon.",
+    "No pressure, no complaints. Bas dil se ek sorry aur aapke chehre par ek choti si smile ki umeed.",
+    "— Aapka, with all my heart. ❤️"
   ];
 
   const handleTapHeart = () => {
-    romanticAudio.playHeartChime();
     setHeartsCount(prev => prev + 1);
 
     confetti({
@@ -36,7 +34,6 @@ export function ApologyLetter() {
 
   const handleSave = () => {
     setIsSaved(true);
-    romanticAudio.playHeartChime();
     setTimeout(() => setIsSaved(false), 3000);
   };
 

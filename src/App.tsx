@@ -6,17 +6,17 @@ import { HeroSection } from './components/HeroSection';
 import { ApologyLetter } from './components/ApologyLetter';
 import { SpecialCards } from './components/SpecialCards';
 import { LoveQuestion } from './components/LoveQuestion';
-import { OurMoments } from './components/OurMoments';
 import { FinalSurprise } from './components/FinalSurprise';
 import { SmileModal } from './components/SmileModal';
+import { RomanticSurpriseModal } from './components/RomanticSurpriseModal';
 import { ScrollToTopHeart } from './components/ScrollToTopHeart';
 import { RomanticCursor } from './components/RomanticCursor';
 import { Footer } from './components/Footer';
 
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false);
-  const [musicPlaying, setMusicPlaying] = useState(false);
   const [showSmileModal, setShowSmileModal] = useState(false);
+  const [showRomanticSurprise, setShowRomanticSurprise] = useState(false);
 
   return (
     <div className="relative min-h-screen bg-[#0b0307] text-[#fce7f3] selection:bg-rose-500/30 selection:text-rose-100 overflow-x-hidden">
@@ -30,8 +30,6 @@ export default function App() {
       {!hasEntered && (
         <OpeningSurprise
           onOpen={() => setHasEntered(true)}
-          musicEnabled={musicPlaying}
-          setMusicEnabled={setMusicPlaying}
         />
       )}
 
@@ -42,9 +40,8 @@ export default function App() {
         }`}
       >
         <Navbar
-          musicPlaying={musicPlaying}
-          setMusicPlaying={setMusicPlaying}
           onSendSmile={() => setShowSmileModal(true)}
+          onOpenRomanticSurprise={() => setShowRomanticSurprise(true)}
         />
 
         <main className="relative z-10">
@@ -52,7 +49,6 @@ export default function App() {
           <ApologyLetter />
           <SpecialCards />
           <LoveQuestion />
-          <OurMoments />
           <FinalSurprise />
         </main>
 
@@ -61,10 +57,16 @@ export default function App() {
         {/* Floating back-to-top heart button */}
         <ScrollToTopHeart />
 
-        {/* Modal triggered by smile buttons */}
+        {/* Modal triggered by smile button */}
         <SmileModal
           isOpen={showSmileModal}
           onClose={() => setShowSmileModal(false)}
+        />
+
+        {/* Romantic Heart Surprise Popup */}
+        <RomanticSurpriseModal
+          isOpen={showRomanticSurprise}
+          onClose={() => setShowRomanticSurprise(false)}
         />
       </div>
     </div>

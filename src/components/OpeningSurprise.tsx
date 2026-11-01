@@ -1,30 +1,16 @@
 import { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Heart, Sparkles, Volume2, VolumeX, MailOpen } from 'lucide-react';
-import { romanticAudio } from '../utils/audio';
+import { Heart, Sparkles, MailOpen } from 'lucide-react';
 
 interface OpeningSurpriseProps {
   onOpen: () => void;
-  musicEnabled: boolean;
-  setMusicEnabled: (enabled: boolean) => void;
 }
 
-export function OpeningSurprise({ onOpen, musicEnabled, setMusicEnabled }: OpeningSurpriseProps) {
+export function OpeningSurprise({ onOpen }: OpeningSurpriseProps) {
   const [isOpening, setIsOpening] = useState(false);
-  const [playMusicChoice, setPlayMusicChoice] = useState(true);
 
   const handleOpenSurprise = () => {
     setIsOpening(true);
-
-    // Audio handling: only start if user enabled music choice
-    if (playMusicChoice) {
-      setMusicEnabled(true);
-      romanticAudio.start();
-    } else {
-      setMusicEnabled(false);
-      romanticAudio.stop();
-    }
-    romanticAudio.playHeartChime();
 
     // Trigger sweet petal and heart confetti shower
     const count = 200;
@@ -84,28 +70,11 @@ export function OpeningSurprise({ onOpen, musicEnabled, setMusicEnabled }: Openi
       <div className="absolute bottom-10 right-10 w-72 h-72 bg-pink-700/10 rounded-full blur-[110px] pointer-events-none" />
 
       {/* Top subtle indicator */}
-      <div className="w-full max-w-md flex justify-between items-center text-xs text-rose-300/60 font-sans tracking-wide">
-        <span className="flex items-center gap-1.5">
+      <div className="w-full max-w-md flex justify-center items-center text-xs text-rose-300/60 font-sans tracking-wide">
+        <span className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-rose-500/20 bg-rose-950/40 text-rose-300">
           <Sparkles className="w-3.5 h-3.5 text-rose-400 animate-spin" style={{ animationDuration: '6s' }} />
-          <span>A Little Secret</span>
+          <span>A Little Secret Just For You</span>
         </span>
-        <button
-          onClick={() => setPlayMusicChoice(!playMusicChoice)}
-          className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-rose-500/20 bg-rose-950/40 text-rose-200/80 hover:border-rose-400/40 transition-colors text-xs cursor-pointer"
-          title="Toggle background music for opening"
-        >
-          {playMusicChoice ? (
-            <>
-              <Volume2 className="w-3.5 h-3.5 text-rose-400" />
-              <span>Music: On</span>
-            </>
-          ) : (
-            <>
-              <VolumeX className="w-3.5 h-3.5 text-rose-400/60" />
-              <span>Music: Off</span>
-            </>
-          )}
-        </button>
       </div>
 
       {/* Center Heart and Text */}
@@ -147,13 +116,6 @@ export function OpeningSurprise({ onOpen, musicEnabled, setMusicEnabled }: Openi
           <MailOpen className="w-5 h-5 text-rose-100 transition-transform group-hover:scale-110" />
           <span className="relative z-10 tracking-wide font-sans-main">Open This Little Surprise 💌</span>
         </button>
-
-        {/* Music notice */}
-        <p className="mt-4 text-xs text-rose-300/60 font-sans-main">
-          {playMusicChoice
-            ? '🎵 Gentle background instrumental will play softly'
-            : '🔇 Background music is muted (you can turn it on anytime)'}
-        </p>
       </div>
 
       {/* Tiny handwritten note at the bottom */}
