@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-handwriting: 'Caveat', 'Dancing Script', cursive;
+    --font-serif-romantic: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+.font-handwriting {
+  font-family: 'Caveat', 'Dancing Script', cursive;
+}
+
+.font-serif-romantic {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-sans-main {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Subtle glowing pulse */
+@keyframes heartGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(244, 63, 94, 0.4)) drop-shadow(0 0 35px rgba(225, 29, 72, 0.2));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.75)) drop-shadow(0 0 60px rgba(225, 29, 72, 0.4));
+    transform: scale(1.05);
+  }
+}
+
+.animate-heart-glow {
+  animation: heartGlow 3s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+/* Glassmorphism romantic card */
+.glass-romantic {
+  background: rgba(25, 8, 18, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 114, 182, 0.15);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-romantic-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-romantic-hover:hover {
+  border-color: rgba(244, 114, 182, 0.35);
+  box-shadow: 0 15px 50px -10px rgba(225, 29, 72, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0307;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(225, 29, 72, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 72, 0.6);
+}
